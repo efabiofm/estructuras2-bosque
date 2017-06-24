@@ -15,6 +15,8 @@
 #include "ArbolAVL.h"
 #include "NodoAVL.h"
 
+using namespace std;
+
 ArbolAVL::ArbolAVL() {
     raiz = NULL;
 }
@@ -38,12 +40,12 @@ void ArbolAVL::insertar(const int dato) {
     // Si el dato es menor que el que contiene el nodo padre, lo insertamos en la rama izquierda
     else if (dato < padre->getDato()) {
         padre->setIzquierdo(new NodoAVL(dato, padre));
-        equilibrar(padre, -1, true);
+        equilibrar(padre, IZQUIERDO, true);
     }
     // Si el dato es mayor que el que contiene el nodo padre, lo insertamos en la rama derecha
     else if (dato > padre->getDato()) {
         padre->setDerecho(new NodoAVL(dato, padre));
-        equilibrar(padre, 1, true);
+        equilibrar(padre, DERECHO, true);
     }
 }
 
@@ -55,10 +57,10 @@ void ArbolAVL::equilibrar(NodoAVL * nodo, int rama, bool nuevo) {
     bool salir = false;
     while (nodo && !salir) {
         if (nuevo)
-            if (rama == -1) nodo->setFE(nodo->getFE() - 1);
+            if (rama == IZQUIERDO) nodo->setFE(nodo->getFE() - 1);
             else nodo->setFE(nodo->getFE() + 1);
         else
-            if (rama == -1) nodo->setFE(nodo->getFE() + 1);
+            if (rama == IZQUIERDO) nodo->setFE(nodo->getFE() + 1);
         else nodo->setFE(nodo->getFE() - 1);
         if (nodo->getFE() == 0) salir = true;
         else if (nodo->getFE() == -2) {
@@ -71,8 +73,8 @@ void ArbolAVL::equilibrar(NodoAVL * nodo, int rama, bool nuevo) {
             salir = true;
         }
         if (nodo->getPadre())
-            if (nodo->getPadre()->getDerecho() == nodo) rama = 1;
-            else rama = -1;
+            if (nodo->getPadre()->getDerecho() == nodo) rama = DERECHO;
+            else rama = IZQUIERDO;
         nodo = nodo->getPadre();
     }
 }
@@ -209,3 +211,46 @@ void ArbolAVL::rdi(NodoAVL * nodo) {
     R->setFE(0);
 }
 
+void ArbolAVL::imprimir() {
+    int h = getAltura(raiz);
+    for(int i=1; i<=h; i++) {
+        int espaciosCentrales = getEspacios(i, h);
+        int espaciosIniciales = (espaciosCentrales-1)/2;
+        for(int i=0; i<espaciosIniciales; i++){
+            cout << " ";
+        }
+        imprimirRecursivo(raiz, i, espaciosCentrales);
+        cout << endl << endl;
+    }
+}
+
+void ArbolAVL::imprimirRecursivo(NodoAVL* r, int nivel, int espacios) {
+    if(nivel == 1) {
+        r? cout << r->getDato() : cout << " ";
+        for(int i=0; i<espacios; i++){
+            cout << " ";
+        }
+        return;
+    }
+    if(nivel > 1) {
+        imprimirRecursivo(r? r->getIzquierdo() : NULL, nivel-1, espacios);
+        imprimirRecursivo(r? r->getDerecho() : NULL, nivel-1, espacios);
+    }
+}
+
+int ArbolAVL::getAltura(NodoAVL *r) {
+    if(!r) return 0;
+    else{
+        int izqAltura = getAltura(r->getIzquierdo());
+        int derAltura = getAltura(r->getDerecho());
+        return izqAltura > derAltura ? izqAltura+1 : derAltura+1;
+    }
+}
+
+int ArbolAVL::getEspacios(int nivel, int altura) {
+    int cant = 1;
+    for(int i=nivel; i<altura; i++){
+        cant = 2 * cant + 1;
+    }
+    return cant;
+}

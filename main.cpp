@@ -30,6 +30,7 @@ int main(void) {
     avl->insertar(14);
     avl->insertar(16);
     avl->insertar(13);
+    avl->imprimir();
     return 0;
 }
 
