@@ -21,7 +21,6 @@ public:
     ArbolAVL();
     ~ArbolAVL();
     void insertar(const int);
-    bool esHoja(NodoAVL *);
     int getAltura(NodoAVL *);
     void imprimir();
 private:
