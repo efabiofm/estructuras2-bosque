@@ -21,16 +21,18 @@ public:
     ArbolAVL();
     ~ArbolAVL();
     void insertar(const int);
-    bool esHoja(NodoAVL *);
+    int getAltura(NodoAVL *);
+    void imprimir();
 private:
     NodoAVL *raiz;
-    int contador;
-    int altura;
+    enum {IZQUIERDO, DERECHO};
     void equilibrar(NodoAVL *, int, bool);
     void rsd(NodoAVL *);
     void rsi(NodoAVL *);
     void rdd(NodoAVL *);
     void rdi(NodoAVL *);
+    void imprimirRecursivo(NodoAVL *, int, int);
+    int getEspacios(int, int);
 };
 
 #endif /* ARBOLAVL_H */
