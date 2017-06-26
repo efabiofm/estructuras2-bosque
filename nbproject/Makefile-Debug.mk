@@ -37,8 +37,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/ArbolAVL.o \
 	${OBJECTDIR}/ArbolB.o \
+	${OBJECTDIR}/ArbolRN.o \
 	${OBJECTDIR}/NodoAVL.o \
 	${OBJECTDIR}/NodoB.o \
+	${OBJECTDIR}/NodoRN.o \
 	${OBJECTDIR}/main.o
 
 
@@ -76,6 +78,11 @@ ${OBJECTDIR}/ArbolB.o: ArbolB.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ArbolB.o ArbolB.cpp
 
+${OBJECTDIR}/ArbolRN.o: ArbolRN.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ArbolRN.o ArbolRN.cpp
+
 ${OBJECTDIR}/NodoAVL.o: NodoAVL.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -85,6 +92,11 @@ ${OBJECTDIR}/NodoB.o: NodoB.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NodoB.o NodoB.cpp
+
+${OBJECTDIR}/NodoRN.o: NodoRN.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NodoRN.o NodoRN.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

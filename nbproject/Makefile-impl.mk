@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=estructuras2-bosque
+PROJECTNAME=Estructuras2-Bosque
 
 # Active Configuration
 DEFAULTCONF=Debug
