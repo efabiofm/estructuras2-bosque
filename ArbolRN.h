@@ -20,11 +20,11 @@ class ArbolRN {
 public:
     ArbolRN();
     ~ArbolRN();
-    void insertar(int &);
-    NodoRN* insertarRecursivo(NodoRN *&, NodoRN *&);
-    void rotarIzquierda(NodoRN *&, NodoRN *&);
-    void rotarDerecha(NodoRN *&, NodoRN *&);
-    void equilibrar(NodoRN *&, NodoRN *&);
+    void insertar(int);
+    NodoRN* insertarRecursivo(NodoRN *, NodoRN *);
+    void rotarIzquierda(NodoRN *, NodoRN *);
+    void rotarDerecha(NodoRN *, NodoRN *);
+    void equilibrar(NodoRN *, NodoRN *);
     void imprimir();
     int getAltura(NodoRN *);
     enum {ROJO, NEGRO};

@@ -16,106 +16,106 @@
 
 using namespace std;
 
-#define BLACK   "\033[30m" 
+#define BLACK   "\033[0m" 
 #define RED     "\033[31m"
 
 ArbolRN::ArbolRN() {
     raiz = NULL;
 }
 
-NodoRN* ArbolRN::insertarRecursivo(NodoRN *&r, NodoRN *&pt)
+NodoRN* ArbolRN::insertarRecursivo(NodoRN *r, NodoRN *pt)
 {
     if (r == NULL)
        return pt;
  
-    if (pt->dato < r->dato)
+    if (pt->getDato() < r->getDato())
     {
-        r->izquierdo  = insertarRecursivo(r->izquierdo, pt);
-        r->izquierdo->padre = r;
+        r->setIzquierdo(insertarRecursivo(r->getIzquierdo(), pt));
+        r->getIzquierdo()->setPadre(r);
     }
-    else if (pt->dato > r->dato)
+    else if (pt->getDato() > r->getDato())
     {
-        r->derecho = insertarRecursivo(r->derecho, pt);
-        r->derecho->padre = r;
+        r->setDerecho(insertarRecursivo(r->getDerecho(), pt));
+        r->getDerecho()->setPadre(r);
     }
     return r;
 }
 
-void ArbolRN::rotarIzquierda(NodoRN *&r, NodoRN *&pt)
+void ArbolRN::rotarIzquierda(NodoRN *r, NodoRN *pt)
 {
-    NodoRN *pt_derecho = pt->derecho;
+    NodoRN *pt_derecho = pt->getDerecho();
  
-    pt->derecho = pt_derecho->izquierdo;
+    pt->setDerecho(pt_derecho->getIzquierdo());
  
-    if (pt->derecho != NULL)
-        pt->derecho->padre = pt;
+    if (pt->getDerecho() != NULL)
+        pt->getDerecho()->setPadre(pt);
  
-    pt_derecho->padre = pt->padre;
+    pt_derecho->setPadre(pt->getPadre());
  
-    if (pt->padre == NULL)
+    if (pt->getPadre() == NULL)
         r = pt_derecho;
  
-    else if (pt == pt->padre->izquierdo)
-        pt->padre->izquierdo = pt_derecho;
+    else if (pt == pt->getPadre()->getIzquierdo())
+        pt->getPadre()->setIzquierdo(pt_derecho);
  
     else
-        pt->padre->derecho = pt_derecho;
+        pt->getPadre()->setDerecho(pt_derecho);
  
-    pt_derecho->izquierdo = pt;
-    pt->padre = pt_derecho;
+    pt_derecho->setIzquierdo(pt);
+    pt->setPadre(pt_derecho);
 }
  
-void ArbolRN::rotarDerecha(NodoRN *&r, NodoRN *&pt)
+void ArbolRN::rotarDerecha(NodoRN *r, NodoRN *pt)
 {
-    NodoRN *pt_izquierdo = pt->izquierdo;
+    NodoRN *pt_izquierdo = pt->getIzquierdo();
  
-    pt->izquierdo = pt_izquierdo->derecho;
+    pt->setIzquierdo(pt_izquierdo->getDerecho());
  
-    if (pt->izquierdo != NULL)
-        pt->izquierdo->padre = pt;
+    if (pt->getIzquierdo() != NULL)
+        pt->getIzquierdo()->setPadre(pt);
  
-    pt_izquierdo->padre = pt->padre;
+    pt_izquierdo->setPadre(pt->getPadre());
  
-    if (pt->padre == NULL)
+    if (pt->getPadre() == NULL)
         r = pt_izquierdo;
  
-    else if (pt == pt->padre->izquierdo)
-        pt->padre->izquierdo = pt_izquierdo;
+    else if (pt == pt->getPadre()->getIzquierdo())
+        pt->getPadre()->setIzquierdo(pt_izquierdo);
  
     else
-        pt->padre->derecho = pt_izquierdo;
+        pt->getPadre()->setDerecho(pt_izquierdo);
  
-    pt_izquierdo->derecho = pt;
-    pt->padre = pt_izquierdo;
+    pt_izquierdo->setDerecho(pt);
+    pt->setPadre(pt_izquierdo);
 }
 
-void ArbolRN::equilibrar(NodoRN *&r, NodoRN *&pt)
+void ArbolRN::equilibrar(NodoRN *r, NodoRN *pt)
 {
     NodoRN *padre_pt = NULL;
     NodoRN *abuelo_pt = NULL;
  
-    while ((pt != r) && (pt->color != NEGRO) &&
-           (pt->padre->color == ROJO))
+    while ((pt != r) && (pt->getColor() != NEGRO) &&
+           (pt->getPadre()->getColor() == ROJO))
     {
  
-        padre_pt = pt->padre;
-        abuelo_pt = pt->padre->padre;
+        padre_pt = pt->getPadre();
+        abuelo_pt = pt->getPadre()->getPadre();
  
         /* Caso : A
            El padre de pt es hijo izquierdo del abuelo de pt */
-        if (padre_pt == abuelo_pt->izquierdo)
+        if (padre_pt == abuelo_pt->getIzquierdo())
         {
  
-            NodoRN *tio_pt = abuelo_pt->derecho;
+            NodoRN *tio_pt = abuelo_pt->getDerecho();
  
             /* Caso : 1
                El tío de pt es también rojo
                Solo se requiere recolorear */
-            if (tio_pt != NULL && tio_pt->color == ROJO)
+            if (tio_pt != NULL && tio_pt->getColor() == ROJO)
             {
-                abuelo_pt->color = ROJO;
-                padre_pt->color = NEGRO;
-                tio_pt->color = NEGRO;
+                abuelo_pt->setColor(ROJO);
+                padre_pt->setColor(NEGRO);
+                tio_pt->setColor(NEGRO);
                 pt = abuelo_pt;
             }
  
@@ -124,18 +124,20 @@ void ArbolRN::equilibrar(NodoRN *&r, NodoRN *&pt)
                 /* Caso : 2
                    pt es hijo derecho de su padre
                    Se requiere rotación a la izquierda */
-                if (pt == padre_pt->derecho)
+                if (pt == padre_pt->getDerecho())
                 {
                     rotarIzquierda(r, padre_pt);
                     pt = padre_pt;
-                    padre_pt = pt->padre;
+                    padre_pt = pt->getPadre();
                 }
  
                 /* Caso : 3
                    pt es hijo izquierdo de su padre
                    Se requiere rotación a la derecha */
                 rotarDerecha(r, abuelo_pt);
-                swap(padre_pt->color, abuelo_pt->color);
+                bool colorAux = padre_pt->getColor();
+                padre_pt->setColor(abuelo_pt->getColor());
+                abuelo_pt->setColor(colorAux);
                 pt = padre_pt;
             }
         }
@@ -144,16 +146,16 @@ void ArbolRN::equilibrar(NodoRN *&r, NodoRN *&pt)
            El padre de pt es hijo derecho del abuelo de pt */
         else
         {
-            NodoRN *tio_pt = abuelo_pt->izquierdo;
+            NodoRN *tio_pt = abuelo_pt->getIzquierdo();
  
             /* Caso : 1
                Es tío de pt es también rojo
                Sólo se requiere recolorar */
-            if ((tio_pt != NULL) && (tio_pt->color == ROJO))
+            if ((tio_pt != NULL) && (tio_pt->getColor() == ROJO))
             {
-                abuelo_pt->color = ROJO;
-                padre_pt->color = NEGRO;
-                tio_pt->color = NEGRO;
+                abuelo_pt->setColor(ROJO);
+                padre_pt->setColor(NEGRO);
+                tio_pt->setColor(NEGRO);
                 pt = abuelo_pt;
             }
             else
@@ -161,27 +163,30 @@ void ArbolRN::equilibrar(NodoRN *&r, NodoRN *&pt)
                 /* Caso : 2
                    pt es hijo izquierdo de su padre
                    Se requiere rotación a la derecha */
-                if (pt == padre_pt->izquierdo)
+                if (pt == padre_pt->getIzquierdo())
                 {
                     rotarDerecha(r, padre_pt);
                     pt = padre_pt;
-                    padre_pt = pt->padre;
+                    padre_pt = pt->getPadre();
                 }
  
                 /* Caso : 3
                    pt es hijo derecho de su padre
                    Se requiere rotación a la izquierda */
                 rotarIzquierda(r, abuelo_pt);
-                swap(padre_pt->color, abuelo_pt->color);
+                bool colorAux = padre_pt->getColor();
+                padre_pt->setColor(abuelo_pt->getColor());
+                abuelo_pt->setColor(colorAux);
+                //swap(padre_pt->getColor(), abuelo_pt->getColor());
                 pt = padre_pt;
             }
         }
     }
  
-    r->color = NEGRO;
+    r->setColor(NEGRO);
 }
 
-void ArbolRN::insertar(int &pdato)
+void ArbolRN::insertar(int pdato)
 {
     NodoRN *pt = new NodoRN(pdato);
     raiz = insertarRecursivo(raiz, pt);
@@ -208,23 +213,23 @@ void ArbolRN::imprimir() {
 
 void ArbolRN::imprimirRecursivo(NodoRN* r, int nivel, int espacios) {
     if (nivel == 1) {
-        r ? cout << (r->color?BLACK:RED) << r->dato : cout << " ";
+        r ? cout << (r->getColor()?BLACK:RED) << r->getDato() : cout << " ";
         for (int i = 0; i < espacios; i++) {
             cout << " ";
         }
         return;
     }
     if (nivel > 1) {
-        imprimirRecursivo(r ? r->izquierdo : NULL, nivel - 1, espacios);
-        imprimirRecursivo(r ? r->derecho : NULL, nivel - 1, espacios);
+        imprimirRecursivo(r ? r->getIzquierdo() : NULL, nivel - 1, espacios);
+        imprimirRecursivo(r ? r->getDerecho() : NULL, nivel - 1, espacios);
     }
 }
 
 int ArbolRN::getAltura(NodoRN *r) {
     if (!r) return 0;
     else {
-        int izqAltura = getAltura(r->izquierdo);
-        int derAltura = getAltura(r->derecho);
+        int izqAltura = getAltura(r->getIzquierdo());
+        int derAltura = getAltura(r->getDerecho());
         return izqAltura > derAltura ? izqAltura + 1 : derAltura + 1;
     }
 }
