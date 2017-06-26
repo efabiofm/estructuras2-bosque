@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include "ArbolAVL.h"
+#include "ArbolRN.h"
 
 using namespace std;
 
@@ -22,8 +23,10 @@ using namespace std;
 void menuPrincipal();
 void menuSecundario();
 void menuAVL();
+void menuRN();
 
 ArbolAVL *avl = new ArbolAVL();
+ArbolRN *rn = new ArbolRN();
 
 int main(void) {
     int tipo;
@@ -38,6 +41,9 @@ int main(void) {
             case 1:
                 menuAVL();
                 break;
+            case 2:
+                menuRN();
+                break;
             default:
                 cout << "ERROR: Opción inválida" <<endl;
         }
@@ -50,6 +56,7 @@ void menuPrincipal(){
     cout << "===================" <<endl;
     cout << "0. Salir" << endl;
     cout << "1. Árbol AVL" <<endl;
+    cout << "2. Árbol Rojo-Negro" <<endl;
     cout << "Seleccione una opción: ";
 }
 
@@ -64,10 +71,7 @@ void menuAVL(){
     int accion, dato;
     bool continuar;
     while(continuar){
-        cout << "0. Ir atrás" <<endl;
-        cout << "1. Insertar" <<endl;
-        cout << "2. Imprimir" <<endl;
-        cout << "Seleccione una opción: ";
+        menuSecundario();
         cin >> accion;
         switch(accion){
             case 0:
@@ -87,3 +91,26 @@ void menuAVL(){
     }
 }
 
+void menuRN(){
+    int accion, dato;
+    bool continuar;
+    while(continuar){
+        menuSecundario();
+        cin >> accion;
+        switch(accion){
+            case 0:
+                continuar = false;
+                break;
+            case 1:
+                cout << "Digite el valor del nuevo nodo: ";
+                cin >> dato;
+                rn->insertar(dato);
+                break;
+            case 2:
+                rn->imprimir();
+                break;
+            default:
+                cout << "ERROR: Opción inválida" <<endl;
+        }
+    }
+}

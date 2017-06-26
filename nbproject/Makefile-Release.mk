@@ -36,7 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/ArbolAVL.o \
+	${OBJECTDIR}/ArbolRN.o \
 	${OBJECTDIR}/NodoAVL.o \
+	${OBJECTDIR}/NodoRN.o \
 	${OBJECTDIR}/main.o
 
 
@@ -69,10 +71,20 @@ ${OBJECTDIR}/ArbolAVL.o: ArbolAVL.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ArbolAVL.o ArbolAVL.cpp
 
+${OBJECTDIR}/ArbolRN.o: ArbolRN.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ArbolRN.o ArbolRN.cpp
+
 ${OBJECTDIR}/NodoAVL.o: NodoAVL.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NodoAVL.o NodoAVL.cpp
+
+${OBJECTDIR}/NodoRN.o: NodoRN.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NodoRN.o NodoRN.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

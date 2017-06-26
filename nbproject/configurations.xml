@@ -5,7 +5,9 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>ArbolAVL.h</itemPath>
+      <itemPath>ArbolRN.h</itemPath>
       <itemPath>NodoAVL.h</itemPath>
+      <itemPath>NodoRN.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,7 +17,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>ArbolAVL.cpp</itemPath>
+      <itemPath>ArbolRN.cpp</itemPath>
       <itemPath>NodoAVL.cpp</itemPath>
+      <itemPath>NodoRN.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -44,9 +48,17 @@
       </item>
       <item path="ArbolAVL.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ArbolRN.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ArbolRN.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="NodoAVL.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="NodoAVL.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NodoRN.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NodoRN.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -75,9 +87,17 @@
       </item>
       <item path="ArbolAVL.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ArbolRN.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ArbolRN.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="NodoAVL.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="NodoAVL.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NodoRN.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NodoRN.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
