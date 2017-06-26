@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include "ArbolAVL.h"
+#include "ArbolB.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ using namespace std;
 void menuPrincipal();
 void menuSecundario();
 void menuAVL();
+void menuB();
 
 ArbolAVL *avl = new ArbolAVL();
 
@@ -38,6 +40,9 @@ int main(void) {
             case 1:
                 menuAVL();
                 break;
+            case 3:
+                menuB();
+                break;
             default:
                 cout << "ERROR: Opción inválida" <<endl;
         }
@@ -50,6 +55,7 @@ void menuPrincipal(){
     cout << "===================" <<endl;
     cout << "0. Salir" << endl;
     cout << "1. Árbol AVL" <<endl;
+    cout << "3. Árbol B" << endl;
     cout << "Seleccione una opción: ";
 }
 
@@ -87,3 +93,43 @@ void menuAVL(){
     }
 }
 
+void menuB(){
+    int accion, dato, grado;
+    bool continuar;
+    cout << "Indique el grado minimo del arbol: " << endl;
+    cout << "El grado minimo es la base de las funciones necesarias \n"
+            "para deducir el orden y mitad de los nodos.\n "
+            "Orden = 2*t-1 || t = 3 -> orden = 5" << endl;
+    cin >> grado;
+    ArbolB *b = new ArbolB(grado);
+    while(continuar){
+        cout << "0. Ir atrás" <<endl;
+        cout << "1. Insertar" <<endl;
+        cout << "2. Buscar elemento" << endl;
+        cout << "3. Imprimir" <<endl;
+        cout << "Seleccione una opción: ";
+        cin >> accion;
+        switch(accion){
+            case 0:
+                continuar = false;
+                break;
+            case 1:
+                cout << "Digite el valor del nuevo nodo: ";
+                cin >> dato;
+                b->insert(dato);
+                break;
+            case 2:
+                cout << "Digite el valor que desea buscar: ";
+                cin >> dato;
+                (b->search(dato) != NULL)? cout << "Está" << endl : cout << "No está" << endl;
+                break;
+            case 3:
+                cout << "Impresión Transversal: " << endl;
+                b->traverse();
+                cout << "\n";
+                break;
+            default:
+                cout << "ERROR: Opción inválida" <<endl;
+        }
+    }
+}

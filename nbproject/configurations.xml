@@ -5,7 +5,9 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>ArbolAVL.h</itemPath>
+      <itemPath>ArbolB.h</itemPath>
       <itemPath>NodoAVL.h</itemPath>
+      <itemPath>NodoB.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,7 +17,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>ArbolAVL.cpp</itemPath>
+      <itemPath>ArbolB.cpp</itemPath>
       <itemPath>NodoAVL.cpp</itemPath>
+      <itemPath>NodoB.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -44,9 +48,17 @@
       </item>
       <item path="ArbolAVL.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ArbolB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ArbolB.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="NodoAVL.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="NodoAVL.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NodoB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NodoB.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -75,9 +87,17 @@
       </item>
       <item path="ArbolAVL.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ArbolB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ArbolB.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="NodoAVL.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="NodoAVL.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NodoB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NodoB.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
